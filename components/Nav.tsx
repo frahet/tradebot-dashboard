@@ -29,6 +29,7 @@ export function Nav() {
         <nav className="flex items-center gap-1">
           <Link href="/" className="nav-link">Overview</Link>
           <Link href="/trades" className="nav-link">Trades</Link>
+          <Link href="/compare" className="nav-link">Compare</Link>
           <a
             href="https://huginn.huginndigital.com"
             target="_blank"
