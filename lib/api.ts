@@ -5,7 +5,8 @@ const CF_CLIENT_SECRET = process.env.CF_ACCESS_CLIENT_SECRET ?? "";
 
 function authHeaders(): HeadersInit {
   const headers: Record<string, string> = {};
-  if (API_KEY) headers["Authorization"] = `Bearer ${API_KEY}`;
+  // Cloudflare Tunnel strips Authorization header; use X-API-Key instead
+  if (API_KEY) headers["X-API-Key"] = API_KEY;
   if (CF_CLIENT_ID) headers["CF-Access-Client-Id"] = CF_CLIENT_ID;
   if (CF_CLIENT_SECRET) headers["CF-Access-Client-Secret"] = CF_CLIENT_SECRET;
   return headers;
