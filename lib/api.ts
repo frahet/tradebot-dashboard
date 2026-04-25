@@ -1,8 +1,14 @@
 const API_URL = process.env.API_URL ?? "https://huginn.huginndigital.com";
 const API_KEY = process.env.API_KEY ?? "";
+const CF_CLIENT_ID = process.env.CF_ACCESS_CLIENT_ID ?? "";
+const CF_CLIENT_SECRET = process.env.CF_ACCESS_CLIENT_SECRET ?? "";
 
 function authHeaders(): HeadersInit {
-  return API_KEY ? { Authorization: `Bearer ${API_KEY}` } : {};
+  const headers: Record<string, string> = {};
+  if (API_KEY) headers["Authorization"] = `Bearer ${API_KEY}`;
+  if (CF_CLIENT_ID) headers["CF-Access-Client-Id"] = CF_CLIENT_ID;
+  if (CF_CLIENT_SECRET) headers["CF-Access-Client-Secret"] = CF_CLIENT_SECRET;
+  return headers;
 }
 
 export type LeaderboardRow = {
